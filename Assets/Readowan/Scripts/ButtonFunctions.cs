@@ -16,6 +16,8 @@ public class ButtonFunctions : MonoBehaviour
     {
     }
 
+    // ── DEMO SNOWMAN BUTTONS ──────────────
+
     public void GoToSnowmanScene()
     {
         SceneManager.LoadScene("SnowManScene");
@@ -35,40 +37,35 @@ public class ButtonFunctions : MonoBehaviour
 #endif
     }
 
-    public void TakeScreenshot()
+    // ── RESET BUTTON ──────────────────────
+
+    public void ResetAllAccessories()
     {
-        StartCoroutine(Screenshot());
-    }
+        AccessoryPlacer[] allAccessories =
+            FindObjectsByType<AccessoryPlacer>(
+            FindObjectsSortMode.None);
 
-    IEnumerator Screenshot()
-    {
-        // Wait for end of frame
-        yield return new WaitForEndOfFrame();
-
-        // Take screenshot
-        string name = "Snowman_" +
-            System.DateTime.Now.ToString(
-            "yyyyMMdd_HHmmss") + ".png";
-        ScreenCapture.CaptureScreenshot(name);
-        Debug.Log("Saved: " + name);
-
-        // Show feedback message
-        if (feedbackText != null)
+        foreach (AccessoryPlacer acc
+            in allAccessories)
         {
-            StartCoroutine(ShowMessage());
+            acc.ResetAccessory();
         }
+
+        Debug.Log("All accessories reset!");
+
+        if (feedbackText != null)
+            StartCoroutine(ShowMessage(
+                "Snowman Reset!"));
     }
 
-    IEnumerator ShowMessage()
+    // ── FEEDBACK MESSAGE ──────────────────
+
+    IEnumerator ShowMessage(string message)
     {
-        // Show the text
+        if (feedbackText == null) yield break;
+        feedbackText.text = message;
         feedbackText.gameObject.SetActive(true);
-        feedbackText.text = "📸 Screenshot Saved!";
-
-        // Wait 2 seconds
         yield return new WaitForSeconds(2f);
-
-        // Hide the text
         feedbackText.gameObject.SetActive(false);
     }
 }
