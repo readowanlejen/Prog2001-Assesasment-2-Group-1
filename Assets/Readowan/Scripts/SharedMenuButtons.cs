@@ -3,27 +3,32 @@ using UnityEngine.SceneManagement;
 
 public class SharedMenuButtons : MonoBehaviour
 {
+    [Header("Help Popup")]
+    public GameObject helpPanel;
+
     void Start()
     {
+        // Make sure help panel is hidden
+        if (helpPanel != null)
+            helpPanel.SetActive(false);
     }
 
     void Update()
     {
     }
 
-    // Readowan's Scene button
+    // ── SCENE BUTTONS ─────────────────────
+
     public void GoToReadowanScene()
     {
         SceneManager.LoadScene("Demo_Snowman");
     }
 
-    // Navod's Scene button
     public void GoToNavodScene()
     {
         SceneManager.LoadScene("NavodScene");
     }
 
-    // Quit button
     public void QuitGame()
     {
         Application.Quit();
@@ -31,5 +36,19 @@ public class SharedMenuButtons : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying
             = false;
 #endif
+    }
+
+    // ── HELP POPUP ────────────────────────
+
+    public void ShowHelp()
+    {
+        if (helpPanel != null)
+            helpPanel.SetActive(true);
+    }
+
+    public void CloseHelp()
+    {
+        if (helpPanel != null)
+            helpPanel.SetActive(false);
     }
 }

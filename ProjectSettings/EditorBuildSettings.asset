@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Readowan/Scene/SharedMenu.unity
     guid: bfeebeddd14ca5f448405c67bf589053
+  - enabled: 1
+    path: Assets/Readowan/Scene/Shared Menu Screen.unity
+    guid: c24e4932a76407f41835dd6ee1080ffd
   - enabled: 1
     path: Assets/Readowan/Scene/Demo_Snowman.unity
     guid: 1d41a48dbc2f35e4da8f2383107173b8
